@@ -25,7 +25,7 @@ const DetailsPage = (props: Props) => {
 
     return (
         <div>
-            <Link to="/">go back</Link>
+            <button onClick={() => props.history.goBack()}>back</button>
             <br />
             <img src={url + selectedMovie?.poster_path} style={{ width: 100 }} alt="..." />
             <h2>{selectedMovie?.name}</h2>

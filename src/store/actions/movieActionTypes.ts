@@ -8,7 +8,8 @@ export type Result = {
     id: string,
     title?: string,
     name?: string,
-    poster_path: string
+    poster_path: string,
+    backdrop_path: string
 }
 
 export interface MovieListLoading {
