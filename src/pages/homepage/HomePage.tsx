@@ -2,12 +2,15 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../store/store';
 import { getItems } from '../../store/actions/itemActions';
-import { searchItems } from '../../store/actions/controlActions';
-import debounce from 'lodash.debounce';
+import {
+  searchItems,
+  clearSearchItems,
+} from '../../store/actions/controlActions';
 
 import CollectionsList from '../../components/CollectionsList/CollectionsList';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import CategoryTabs from '../../components/CategoryTabs/CategoryTabs';
+import useDebouncedSearch from '../../useDebouncedSearch';
 
 interface Props {}
 
@@ -25,16 +28,12 @@ const HomePage = (props: Props) => {
     dispatch(getItems(currentTab));
   }, [currentTab, dispatch]);
 
-  useEffect(() => {
-    dispatch(searchItems(currentTab, searchQuerry));
-  }, [currentTab, dispatch, searchQuerry]);
-
   return (
     <div>
       <CategoryTabs />
       <br />
       <SearchInput />
-      {searchQuerry.length < 3 ? (
+      {searchResults.length < 1 ? (
         <CollectionsList items={itemState} />
       ) : (
         <CollectionsList items={searchResults} />

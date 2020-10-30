@@ -1,4 +1,4 @@
-import { CHANGE_TAB, ControlDispatchTypes, SearchResultsType, SearchType, SEARCH_LIST_FAIL, SEARCH_LIST_LOADING, SEARCH_LIST_SUCCESS, SET_SEARCH, TabType } from "../actions/controlActionTypes"
+import { CHANGE_TAB, CLEAR_SEARCH_LIST, ControlDispatchTypes, SearchResultsType, SearchType, SEARCH_LIST_FAIL, SEARCH_LIST_LOADING, SEARCH_LIST_SUCCESS, SET_SEARCH, TabType } from "../actions/controlActionTypes"
 
 interface InitialStateI {
     currentTab: TabType,
@@ -42,6 +42,11 @@ const controlReducer = (state: InitialStateI = initialState, action: ControlDisp
             return {
                 ...state,
                 searchLoading: false
+            }
+        case CLEAR_SEARCH_LIST:
+            return {
+                ...state,
+                items: []
             }
         default:
             return state

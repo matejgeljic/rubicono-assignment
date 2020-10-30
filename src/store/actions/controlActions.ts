@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import axios from 'axios'
-import { ChangeTab, CHANGE_TAB, ControlDispatchTypes, SEARCH_LIST_FAIL, SEARCH_LIST_LOADING, SEARCH_LIST_SUCCESS, SetSearch, SET_SEARCH } from './controlActionTypes';
+import { ChangeTab, CHANGE_TAB, CLEAR_SEARCH_LIST, ControlDispatchTypes, SEARCH_LIST_FAIL, SEARCH_LIST_LOADING, SEARCH_LIST_SUCCESS, SetSearch, SET_SEARCH } from './controlActionTypes';
 
 export const changeTab = (tabValue: string) => (dispatch: Dispatch<ChangeTab>) => {
     dispatch({
@@ -37,4 +37,11 @@ export const searchItems = (category: String, searchQuerry: string) => async (di
             type: SEARCH_LIST_FAIL
         })
     }
+}
+
+export const clearSearchItems = () => (dispatch: Dispatch<ControlDispatchTypes>) => {
+    dispatch({
+        type: CLEAR_SEARCH_LIST,
+        payload: []
+    })
 }

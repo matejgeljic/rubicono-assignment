@@ -3,6 +3,7 @@ import './SearchInput.css';
 import { RootStore } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearch } from '../../store/actions/controlActions';
+import useDebouncedSearch from '../../useDebouncedSearch';
 
 interface Props {}
 
@@ -20,6 +21,8 @@ const SearchInput = (props: Props) => {
   };
 
   let searchTerm = currentTab === 'movie' ? 'Movies' : 'TV Shows';
+
+  useDebouncedSearch();
 
   return (
     <div className="search-input">
