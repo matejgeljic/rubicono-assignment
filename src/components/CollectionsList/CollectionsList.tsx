@@ -1,23 +1,25 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Result } from '../../store/actions/movieActionTypes'
-import CollectionItem from '../CollectionItem/CollectionItem'
+import React from 'react';
+import './CollectionsList.css';
+import { Link } from 'react-router-dom';
+import { Result } from '../../store/actions/itemActionTypes';
+import CollectionItem from '../CollectionItem/CollectionItem';
 
 interface Props {
-    items: any
+  items: any;
 }
 
-const CollectionsList = (movies: Props) => {
-    return (
-        <div className="row">
-            {!movies.items ? null : movies.items.map((movie: Result) => (
-                <Link to={`details/${movie.id}`} key={movie.id}>
-                    <CollectionItem movie={movie} />
-                </Link>
-            ))}
+const CollectionsList = (itmes: Props) => {
+  return (
+    <div className="container">
+      {!itmes.items
+        ? null
+        : itmes.items.map((item: Result) => (
+            <Link to={`details/${item.id}`} key={item.id}>
+              <CollectionItem item={item} />
+            </Link>
+          ))}
+    </div>
+  );
+};
 
-        </div>
-    )
-}
-
-export default CollectionsList
+export default CollectionsList;

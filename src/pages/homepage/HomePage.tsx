@@ -1,54 +1,46 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootStore } from '../../store/store'
-import { getMovies } from '../../store/actions/movieActions'
-import { changeTab, setSearch, searchMovies } from '../../store/actions/controlActions'
+import { RootStore } from '../../store/store';
+import { getItems } from '../../store/actions/itemActions';
+import { searchItems } from '../../store/actions/controlActions';
+import debounce from 'lodash.debounce';
 
-import CollectionsList from '../../components/CollectionsList/CollectionsList'
+import CollectionsList from '../../components/CollectionsList/CollectionsList';
+import SearchInput from '../../components/SearchInput/SearchInput';
+import CategoryTabs from '../../components/CategoryTabs/CategoryTabs';
 
-interface Props {
-
-}
+interface Props {}
 
 const HomePage = (props: Props) => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    const movieState = useSelector((state: RootStore) => state.movies.items)
-    const isLoading = useSelector((state: RootStore) => state.movies.loading)
-    const currentTab = useSelector((state: RootStore) => state.controls.currentTab)
-    const searchQuerry = useSelector((state: RootStore) => state.controls.search)
-    const searchResults = useSelector((state: RootStore) => state.controls.items)
+  const itemState = useSelector((state: RootStore) => state.items.items);
+  const currentTab = useSelector(
+    (state: RootStore) => state.controls.currentTab
+  );
+  const searchQuerry = useSelector((state: RootStore) => state.controls.search);
+  const searchResults = useSelector((state: RootStore) => state.controls.items);
 
-    useEffect(() => {
-        dispatch(getMovies(currentTab));
-    }, [currentTab, dispatch])
+  useEffect(() => {
+    dispatch(getItems(currentTab));
+  }, [currentTab, dispatch]);
 
-    useEffect(() => {
-        dispatch(searchMovies(currentTab, searchQuerry))
-    }, [currentTab, dispatch, searchQuerry])
+  useEffect(() => {
+    dispatch(searchItems(currentTab, searchQuerry));
+  }, [currentTab, dispatch, searchQuerry]);
 
-    console.log(searchResults)
+  return (
+    <div>
+      <CategoryTabs />
+      <br />
+      <SearchInput />
+      {searchQuerry.length < 3 ? (
+        <CollectionsList items={itemState} />
+      ) : (
+        <CollectionsList items={searchResults} />
+      )}
+    </div>
+  );
+};
 
-    const handleSearch = (e: React.FormEvent<HTMLInputElement>) => {
-        const value = e.currentTarget.value
-        dispatch(setSearch(value))
-    }
-
-    return (
-        <div className="container">
-            <input type="text" value={searchQuerry} onChange={handleSearch} />
-            <br />
-            <button onClick={() => { dispatch(changeTab('tv')) }}>TV</button>
-            <button onClick={() => { dispatch(changeTab('movie')) }}>Movie</button>
-            {searchQuerry.length < 3 ? (
-                <CollectionsList items={movieState} />
-            ) : (
-                    <CollectionsList items={searchResults} />
-                )}
-
-
-        </div >
-    )
-}
-
-export default HomePage
+export default HomePage;

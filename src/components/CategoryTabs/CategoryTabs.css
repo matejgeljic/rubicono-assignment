@@ -1,0 +1,33 @@
+.tabs {
+  margin-left: 15%;
+  margin-top: 20px;
+}
+
+.tab {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  background-color: #554f63;
+  margin: 0 0.3em 0.3em 0;
+  box-sizing: border-box;
+  border: 1px solid 554f63;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  transform: all 0.2s;
+  cursor: pointer;
+  margin-right: 10px;
+  outline: none;
+}
+
+.tabs .tab:hover {
+  color: #fff;
+  background-color: rgb(180, 180, 180);
+  border-color: rgb(180, 180, 180);
+}
+
+.tab-presed {
+  background-color: #665eff;
+  border: 3px solid #3b3b7b;
+}

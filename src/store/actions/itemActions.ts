@@ -1,23 +1,23 @@
 import { Dispatch } from 'redux';
 import axios from 'axios'
-import { MovieListDispatchTypes, MOVIE_LIST_LOADING, MOVIE_LIST_SUCCESS, MOVIE_LIST_FAIL } from './movieActionTypes'
+import { ItemListDispatchTypes, ITEM_LIST_LOADING, ITEM_LIST_SUCCESS, ITEM_LIST_FAIL } from './itemActionTypes'
 
-export const getMovies = (category: String) => async (dispatch: Dispatch<MovieListDispatchTypes>) => {
+export const getItems = (category: String) => async (dispatch: Dispatch<ItemListDispatchTypes>) => {
     try {
         dispatch({
-            type: MOVIE_LIST_LOADING
+            type: ITEM_LIST_LOADING
         })
 
         const res = await axios.get(`https://api.themoviedb.org/3/${category}/top_rated?api_key=5e045baab1a179f86b216829c62d441a`)
 
         dispatch({
-            type: MOVIE_LIST_SUCCESS,
+            type: ITEM_LIST_SUCCESS,
             payload: res.data.results.slice(0, 10)
         })
 
     } catch (error) {
         dispatch({
-            type: MOVIE_LIST_FAIL
+            type: ITEM_LIST_FAIL
         })
     }
 }

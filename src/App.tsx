@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import HomePage from './pages/homepage/HomePage'
-import DetailsPage from './pages/detailspage/DetailsPage';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import HomePage from './pages/HomePage/HomePage';
+import DetailsPage from './pages/DetailsPage/DetailsPage';
 
 function App() {
-
   return (
     <div className="App">
       <Router>

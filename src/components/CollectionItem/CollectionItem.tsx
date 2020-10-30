@@ -1,20 +1,32 @@
-import React from 'react'
-import { Result } from '../../store/actions/movieActionTypes';
+import React from 'react';
+import './CollectionItem.css';
+import altImg from '../../alt-img.png';
+import { Result } from '../../store/actions/itemActionTypes';
 
 interface Props {
-    movie: Result;
+  item: Result;
 }
 
-const CollectionItem = (movie: Props) => {
-    const url = 'https://image.tmdb.org/t/p/w500';
-    return (
-        <div className="card col-md-6 col-sm-6">
-            <img src={url + movie.movie.poster_path} className="card-img-top" alt="..." />
-            <div className="card-body">
-                <h5 className="card-title">{movie.movie.name || movie.movie.title}</h5>
-            </div>
-        </div>
-    )
-}
+const CollectionItem = (item: Props) => {
+  const imageUrl = `https://image.tmdb.org/t/p/w500${item.item.poster_path}`;
 
-export default CollectionItem
+  const defaultSrc = (e: any) => {
+    e.target.src = altImg;
+  };
+
+  return (
+    <div className="collection-item">
+      <img
+        src={imageUrl}
+        onError={defaultSrc}
+        className="collection-item-image"
+        alt={item.item.name}
+      />
+      <div className="title">
+        <h5>{item.item.name || item.item.title}</h5>
+      </div>
+    </div>
+  );
+};
+
+export default CollectionItem;

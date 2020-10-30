@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
-import movieReducer from './movieReducer'
-import movieDetailsReducer from './movieDetailsReducer'
+import itemReducer from './itemReducer'
+import itemDetailsReducer from './itemDetailsReducer'
 import controlReducer from './controlReducer'
 
 const rootReducer = combineReducers({
-    movies: movieReducer,
-    movie: movieDetailsReducer,
+    items: itemReducer,
+    item: itemDetailsReducer,
     controls: controlReducer
 })
 

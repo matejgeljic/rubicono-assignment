@@ -29,7 +29,7 @@ const controlReducer = (state: InitialStateI = initialState, action: ControlDisp
         case SEARCH_LIST_LOADING:
             return {
                 ...state,
-                searchLoading: false
+                searchLoading: true
             }
         case SEARCH_LIST_SUCCESS:
             return {

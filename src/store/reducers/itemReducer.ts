@@ -1,26 +1,26 @@
-import { MovieListDispatchTypes, MovieType, MOVIE_LIST_FAIL, MOVIE_LIST_LOADING, MOVIE_LIST_SUCCESS } from '../actions/movieActionTypes'
+import { ItemListDispatchTypes, ItemType, ITEM_LIST_FAIL, ITEM_LIST_LOADING, ITEM_LIST_SUCCESS } from '../actions/itemActionTypes'
 
 interface InitialStateI {
     loading: boolean,
-    items?: MovieType
+    items?: ItemType
 }
 
 const initialState: InitialStateI = {
     loading: false
 }
 
-const movieReducer = (state: InitialStateI = initialState, action: MovieListDispatchTypes): InitialStateI => {
+const itemReducer = (state: InitialStateI = initialState, action: ItemListDispatchTypes): InitialStateI => {
     switch (action.type) {
-        case MOVIE_LIST_LOADING:
+        case ITEM_LIST_LOADING:
             return {
                 loading: true
             }
-        case MOVIE_LIST_SUCCESS:
+        case ITEM_LIST_SUCCESS:
             return {
                 loading: false,
                 items: action.payload
             }
-        case MOVIE_LIST_FAIL:
+        case ITEM_LIST_FAIL:
             return {
                 loading: false
             }
@@ -29,4 +29,4 @@ const movieReducer = (state: InitialStateI = initialState, action: MovieListDisp
     }
 }
 
-export default movieReducer;
+export default itemReducer;

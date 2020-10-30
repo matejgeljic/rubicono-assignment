@@ -16,7 +16,7 @@ export const setSearch = (searchQuerry: string) => (dispatch: Dispatch<SetSearch
     })
 }
 
-export const searchMovies = (category: String, searchQuerry: string) => async (dispatch: Dispatch<ControlDispatchTypes>) => {
+export const searchItems = (category: String, searchQuerry: string) => async (dispatch: Dispatch<ControlDispatchTypes>) => {
     try {
         dispatch({
             type: SEARCH_LIST_LOADING

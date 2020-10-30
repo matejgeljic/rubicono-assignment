@@ -1,37 +1,83 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
+import './DetailsPage.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootStore } from '../../store/store'
-import { getMovieDetails } from '../../store/actions/movieDetailsActions'
-import { RouteComponentProps, Link } from 'react-router-dom'
+import { RootStore } from '../../store/store';
+import {
+  getItemDetails,
+  clearItemDetails,
+} from '../../store/actions/itemDetailsActions';
+import { RouteComponentProps } from 'react-router-dom';
+import ReactPlayer from 'react-player';
+import { useVideo } from '../../useVideo';
+import Spinner from '../../components/Spinner/Spinner';
+import altImg from '../../alt-img.png';
 
-interface Props extends RouteComponentProps<{ id: string }> {
-
-}
+interface Props extends RouteComponentProps<{ id: string }> {}
 
 const DetailsPage = (props: Props) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const currentTab = useSelector((state: RootStore) => state.controls.currentTab)
-    const movieId = props.match.params.id
+  const currentTab = useSelector(
+    (state: RootStore) => state.controls.currentTab
+  );
+  const isLoading = useSelector((state: RootStore) => state.item.loading);
+  const itemId = props.match.params.id;
 
-    useEffect(() => {
-        dispatch(getMovieDetails(currentTab, movieId))
-    }, [currentTab, dispatch, movieId])
+  useEffect(() => {
+    dispatch(getItemDetails(currentTab, itemId));
 
-    const selectedMovie = useSelector((state: RootStore) => state.movie.movie)
+    return () => {
+      dispatch(clearItemDetails());
+    };
+  }, [currentTab, dispatch, itemId]);
 
-    console.log(selectedMovie)
-    const url = 'https://image.tmdb.org/t/p/w500'
+  const selecteItem = useSelector((state: RootStore) => state.item.item);
 
-    return (
-        <div>
-            <button onClick={() => props.history.goBack()}>back</button>
-            <br />
-            <img src={url + selectedMovie?.poster_path} style={{ width: 100 }} alt="..." />
-            <h2>{selectedMovie?.name}</h2>
-            <h2>{selectedMovie?.overview}</h2>
-        </div>
-    )
-}
+  const video = useVideo(currentTab, itemId);
 
-export default DetailsPage
+  const imageUrl = `https://image.tmdb.org/t/p/w500${selecteItem?.poster_path}`;
+
+  const defaultSrc = (e: any) => {
+    e.target.src = altImg;
+  };
+
+  return (
+    <div className="details">
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <div className="back-button" onClick={() => props.history.goBack()}>
+            <i className="fas fa-long-arrow-alt-left"></i> Back
+          </div>
+          <div>
+            {video.length > 0 ? (
+              <ReactPlayer
+                className="react-player"
+                url={`https://www.youtube.com/watch?v=${video}`}
+                width="80%"
+                playing={true}
+                controls
+                volume={1}
+              />
+            ) : (
+              <img
+                className="details-poster"
+                src={imageUrl}
+                onError={defaultSrc}
+                alt="Movie Poster"
+              />
+            )}
+          </div>
+          <h3 className="details-title">
+            {selecteItem?.name || selecteItem?.title}
+          </h3>
+          <h3 className="overview-title">Movie Overview:</h3>
+          <p className="details-overview">{selecteItem?.overview}</p>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default DetailsPage;

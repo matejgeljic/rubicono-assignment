@@ -1,0 +1,37 @@
+.details {
+  width: 100%;
+  align-items: center;
+}
+
+.details .details-poster {
+  width: 80%;
+  height: 400px;
+  margin: 10px 10% 0 10%;
+  object-fit: fill;
+  size: cover;
+  object-position: center top;
+}
+
+.details .details-overview {
+  margin: 0 10%;
+}
+.details .details-title {
+  margin-left: 10%;
+  font-weight: 600;
+}
+
+.details .overview-title {
+  margin-left: 10%;
+  font-weight: 600;
+}
+
+.back-button {
+  cursor: pointer;
+  margin-left: 10%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.react-player {
+  margin: 10px 10% 0 10%;
+}

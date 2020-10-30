@@ -10,8 +10,7 @@ export type SearchResult = {
     id: string,
     title?: string,
     name?: string,
-    poster_path: string,
-    backdrop_path: string
+    poster_path: string
 }
 
 export type TabType = string;
