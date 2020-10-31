@@ -8,7 +8,7 @@ This app was made as Rubicon test assignment, bootstrapped with [Create React Ap
  ### Technologies:
  Dependencies that are included in the app are: React, React-router-dom, Redux Redux-thunk, React-redux, Redux-devtools-extension and React-player.
  ### Typescript:
- It was my first time using Typescript with React and Redux, and it was a nice experience, so I hope I did a good job of setting up types, interfaces, etc. Really looking         forward to feedback from you.
+ It was my first time using Typescript with React and Redux, and it was a nice experience, so I hope I did a good job of setting up types, interfaces, etc. Really looking         forward to hear feedback from you.
 
 ## Installation
 
