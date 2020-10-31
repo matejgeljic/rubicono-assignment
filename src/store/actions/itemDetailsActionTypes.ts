@@ -8,7 +8,8 @@ export type Result = {
     title?: string,
     name?: string,
     poster_path: string,
-    overview: string
+    overview: string,
+    vote_average?: number
 }
 
 export interface ItemDetailsLoading {

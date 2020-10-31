@@ -9,6 +9,11 @@ export type Result = {
     title?: string,
     name?: string,
     poster_path: string,
+    vote_average?: number,
+    number_of_seasons?: number,
+    runtime?: number,
+    release_date?: Date,
+    first_air_date?: Date
 }
 
 export interface ItemListLoading {

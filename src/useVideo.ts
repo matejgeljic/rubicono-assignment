@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
 
-export const useVideo = (currentTab: string, itemId: string) => {
+const useVideo = (currentTab: string, itemId: string) => {
     const [videos, setVideos] = useState([]);
 
     const getVideo = async () => {
@@ -17,3 +17,5 @@ export const useVideo = (currentTab: string, itemId: string) => {
     getVideo()
     return videos;
 }
+
+export default useVideo

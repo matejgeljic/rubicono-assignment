@@ -8,12 +8,12 @@ interface Props {
   items: any;
 }
 
-const CollectionsList = (itmes: Props) => {
+const CollectionsList: React.FC<Props> = ({ items }) => {
   return (
     <div className="container">
-      {!itmes.items
+      {!items
         ? null
-        : itmes.items.map((item: Result) => (
+        : items.map((item: Result) => (
             <Link to={`details/${item.id}`} key={item.id}>
               <CollectionItem item={item} />
             </Link>

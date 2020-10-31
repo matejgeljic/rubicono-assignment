@@ -6,18 +6,19 @@ import { changeTab } from '../../store/actions/controlActions';
 
 interface Props {}
 
-const CategoryTabs = (props: Props) => {
+const CategoryTabs: React.FC<Props> = (props: Props) => {
   const dispatch = useDispatch();
   const currentTab = useSelector(
     (state: RootStore) => state.controls.currentTab
   );
+  const searchQuerry = useSelector((state: RootStore) => state.controls.search);
 
   return (
     <div className="tabs">
       <button
         className={'tab ' + (currentTab === 'movie' ? 'tab-presed' : '')}
         onClick={() => {
-          dispatch(changeTab('movie'));
+          dispatch(changeTab('movie', searchQuerry));
         }}
       >
         Movies
@@ -25,7 +26,7 @@ const CategoryTabs = (props: Props) => {
       <button
         className={'tab ' + (currentTab === 'tv' ? 'tab-presed' : '')}
         onClick={() => {
-          dispatch(changeTab('tv'));
+          dispatch(changeTab('tv', searchQuerry));
         }}
       >
         TV Shows

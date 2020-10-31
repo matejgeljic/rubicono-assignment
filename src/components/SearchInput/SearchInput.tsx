@@ -7,7 +7,7 @@ import useDebouncedSearch from '../../useDebouncedSearch';
 
 interface Props {}
 
-const SearchInput = (props: Props) => {
+const SearchInput: React.FC<Props> = (props: Props) => {
   const dispatch = useDispatch();
 
   const searchQuerry = useSelector((state: RootStore) => state.controls.search);

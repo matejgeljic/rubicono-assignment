@@ -3,7 +3,7 @@ import './Spinner.css';
 
 interface Props {}
 
-const Spinner = (props: Props) => {
+const Spinner: React.FC<Props> = (props: Props) => {
   return <div className="loader">Loading...</div>;
 };
 

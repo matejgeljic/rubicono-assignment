@@ -8,13 +8,16 @@ import {
 } from '../../store/actions/itemDetailsActions';
 import { RouteComponentProps } from 'react-router-dom';
 import ReactPlayer from 'react-player';
-import { useVideo } from '../../useVideo';
+import useVideo from '../../useVideo';
+import usePage from '../../usePage';
 import Spinner from '../../components/Spinner/Spinner';
+import Rating from '../../components/Rating/Rating';
 import altImg from '../../alt-img.png';
 
 interface Props extends RouteComponentProps<{ id: string }> {}
 
-const DetailsPage = (props: Props) => {
+const DetailsPage: React.FC<Props> = (props: Props) => {
+  usePage('Details');
   const dispatch = useDispatch();
 
   const currentTab = useSelector(
@@ -72,6 +75,9 @@ const DetailsPage = (props: Props) => {
           <h3 className="details-title">
             {selecteItem?.name || selecteItem?.title}
           </h3>
+          {selecteItem?.vote_average ? (
+            <Rating value={selecteItem?.vote_average} />
+          ) : null}
           <h3 className="overview-title">Movie Overview:</h3>
           <p className="details-overview">{selecteItem?.overview}</p>
         </>
