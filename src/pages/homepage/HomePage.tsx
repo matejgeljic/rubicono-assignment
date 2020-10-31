@@ -6,7 +6,7 @@ import { clearItemList, getItems } from '../../store/actions/itemActions';
 import CollectionsList from '../../components/CollectionsList/CollectionsList';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import CategoryTabs from '../../components/CategoryTabs/CategoryTabs';
-import usePage from '../../usePage';
+import usePage from '../../utils/usePage';
 import Spinner from '../../components/Spinner/Spinner';
 
 interface Props {}

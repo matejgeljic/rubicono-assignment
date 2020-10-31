@@ -3,7 +3,7 @@ import './SearchInput.css';
 import { RootStore } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearch } from '../../store/actions/controlActions';
-import useDebouncedSearch from '../../useDebouncedSearch';
+import useDebouncedSearch from '../../utils/useDebouncedSearch';
 
 interface Props {}
 

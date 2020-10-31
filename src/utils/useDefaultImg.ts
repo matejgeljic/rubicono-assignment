@@ -1,4 +1,4 @@
-import altImg from './alt-img.png';
+import altImg from '../alt-img.png';
 
 const useDefaultImg = () => {
     const defaultSrc = (e: any) => {

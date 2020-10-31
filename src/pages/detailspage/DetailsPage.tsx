@@ -8,9 +8,9 @@ import {
 } from '../../store/actions/itemDetailsActions';
 import { RouteComponentProps } from 'react-router-dom';
 import ReactPlayer from 'react-player';
-import useVideo from '../../useVideo';
-import usePage from '../../usePage';
-import useDefaultImg from '../../useDefaultImg';
+import useVideo from '../../utils/useVideo';
+import usePage from '../../utils/usePage';
+import useDefaultImg from '../../utils/useDefaultImg';
 import Spinner from '../../components/Spinner/Spinner';
 import Rating from '../../components/Rating/Rating';
 

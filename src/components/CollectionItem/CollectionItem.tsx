@@ -1,7 +1,7 @@
 import React from 'react';
 import './CollectionItem.css';
 import { Result } from '../../store/actions/itemActionTypes';
-import useDefaultImg from '../../useDefaultImg';
+import useDefaultImg from '../../utils/useDefaultImg';
 
 interface Props {
   item: Result;

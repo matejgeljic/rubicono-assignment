@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearSearchItems, searchItems } from "./store/actions/controlActions";
-import { RootStore } from "./store/store";
+import { clearSearchItems, searchItems } from "../store/actions/controlActions";
+import { RootStore } from "../store/store";
 
 const useDebouncedSearch = () => {
     const dispatch = useDispatch();
