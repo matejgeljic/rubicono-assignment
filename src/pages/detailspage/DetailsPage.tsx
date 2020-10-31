@@ -10,9 +10,9 @@ import { RouteComponentProps } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import useVideo from '../../useVideo';
 import usePage from '../../usePage';
+import useDefaultImg from '../../useDefaultImg';
 import Spinner from '../../components/Spinner/Spinner';
 import Rating from '../../components/Rating/Rating';
-import altImg from '../../alt-img.png';
 
 interface Props extends RouteComponentProps<{ id: string }> {}
 
@@ -40,9 +40,7 @@ const DetailsPage: React.FC<Props> = (props: Props) => {
 
   const imageUrl = `https://image.tmdb.org/t/p/w500${selecteItem?.poster_path}`;
 
-  const defaultSrc = (e: any) => {
-    e.target.src = altImg;
-  };
+  const defaultSrc = useDefaultImg();
 
   return (
     <div className="details">
@@ -77,7 +75,9 @@ const DetailsPage: React.FC<Props> = (props: Props) => {
           </h3>
           {selecteItem?.vote_average ? (
             <Rating value={selecteItem?.vote_average} />
-          ) : null}
+          ) : (
+            <p style={{ marginLeft: '10%' }}>No rating</p>
+          )}
           <h3 className="overview-title">Movie Overview:</h3>
           <p className="details-overview">{selecteItem?.overview}</p>
         </>

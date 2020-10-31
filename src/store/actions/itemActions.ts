@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import axios from 'axios'
-import { ItemListDispatchTypes, ITEM_LIST_LOADING, ITEM_LIST_SUCCESS, ITEM_LIST_FAIL } from './itemActionTypes'
+import { ItemListDispatchTypes, ITEM_LIST_LOADING, ITEM_LIST_SUCCESS, ITEM_LIST_FAIL, CLEAR_ITEM_LIST } from './itemActionTypes'
 
 export const getItems = (category: String) => async (dispatch: Dispatch<ItemListDispatchTypes>) => {
     try {
@@ -20,4 +20,11 @@ export const getItems = (category: String) => async (dispatch: Dispatch<ItemList
             type: ITEM_LIST_FAIL
         })
     }
+}
+
+export const clearItemList = () => (dispatch: Dispatch<ItemListDispatchTypes>) => {
+    dispatch({
+        type: CLEAR_ITEM_LIST,
+        payload: []
+    })
 }

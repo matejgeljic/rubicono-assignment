@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from '../../store/store';
-import { getItems } from '../../store/actions/itemActions';
+import { clearItemList, getItems } from '../../store/actions/itemActions';
 
 import CollectionsList from '../../components/CollectionsList/CollectionsList';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import CategoryTabs from '../../components/CategoryTabs/CategoryTabs';
 import usePage from '../../usePage';
+import Spinner from '../../components/Spinner/Spinner';
 
 interface Props {}
 
@@ -16,6 +17,7 @@ const HomePage: React.FC<Props> = (props: Props) => {
   const dispatch = useDispatch();
 
   const itemState = useSelector((state: RootStore) => state.items.items);
+  const isLoading = useSelector((state: RootStore) => state.items.loading);
   const currentTab = useSelector(
     (state: RootStore) => state.controls.currentTab
   );
@@ -23,6 +25,10 @@ const HomePage: React.FC<Props> = (props: Props) => {
 
   useEffect(() => {
     dispatch(getItems(currentTab));
+
+    return () => {
+      dispatch(clearItemList());
+    };
   }, [currentTab, dispatch]);
 
   return (
@@ -30,7 +36,9 @@ const HomePage: React.FC<Props> = (props: Props) => {
       <CategoryTabs />
       <br />
       <SearchInput />
-      {searchResults.length < 1 ? (
+      {isLoading ? (
+        <Spinner />
+      ) : searchResults.length < 1 ? (
         <CollectionsList items={itemState} />
       ) : (
         <CollectionsList items={searchResults} />

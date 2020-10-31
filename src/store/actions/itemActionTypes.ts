@@ -1,6 +1,7 @@
 export const ITEM_LIST_LOADING = 'ITEM_LIST_LOADING';
 export const ITEM_LIST_SUCCESS = 'ITEM_LIST_SUCCESS';
 export const ITEM_LIST_FAIL = 'ITEM_LIST_FAIL';
+export const CLEAR_ITEM_LIST = 'CLEAR_ITEM_LIST';
 
 export type ItemType = Result[]
 
@@ -30,4 +31,9 @@ export interface ItemListFail {
     type: typeof ITEM_LIST_FAIL
 }
 
-export type ItemListDispatchTypes = ItemListLoading | ItemListSuccess | ItemListFail
+export interface ClearItemDetails {
+    type: typeof CLEAR_ITEM_LIST
+    payload: []
+}
+
+export type ItemListDispatchTypes = ItemListLoading | ItemListSuccess | ItemListFail | ClearItemDetails

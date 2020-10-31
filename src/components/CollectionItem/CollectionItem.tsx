@@ -1,7 +1,7 @@
 import React from 'react';
 import './CollectionItem.css';
-import altImg from '../../alt-img.png';
 import { Result } from '../../store/actions/itemActionTypes';
+import useDefaultImg from '../../useDefaultImg';
 
 interface Props {
   item: Result;
@@ -10,15 +10,11 @@ interface Props {
 const CollectionItem: React.FC<Props> = ({ item }) => {
   const imageUrl = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
 
-  const defaultSrc = (e: any) => {
-    e.target.src = altImg;
-  };
-
   return (
     <div className="collection-item">
       <img
         src={imageUrl}
-        onError={defaultSrc}
+        onError={useDefaultImg()}
         className="collection-item-image"
         alt={item.name}
       />
